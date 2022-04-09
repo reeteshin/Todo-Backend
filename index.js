@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const Connect = require('./src/db/db')
 
-
+const port = 1234;
 const Route  = require("./src/controller/todoconstroller")
 app.use(express.json())
 app.get('/',function(req,res){
@@ -14,7 +15,7 @@ app.use("/get",Route);
 app.use("/post",Route);
 
 
-app.listen(1234,(req,res)=>{
+app.listen(process.env.PORT||port,(req,res)=>{
     Connect()
     console.log("running on port 1234")
 })
